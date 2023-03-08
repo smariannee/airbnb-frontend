@@ -9,17 +9,18 @@ import Login from './modules/auth/adapters/screens/Login'; //importar componente
 import { app } from './config/utils/firebase';
 import { LogBox } from 'react-native';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import Loading from './kernel/components/Loading'
 
 export default function App() {
   const [session, setSession] = useState(null);
   useEffect(() => {
     const auth = getAuth();
     onAuthStateChanged(auth, (credential) => {
-      setUser(credential);
       !credential ? setSession(false) : setSession(true);
     });
   }, []);
 
+  if(session === null) return <Loading show={true} text="Cargando..."/>
   return (
     session ? <NavigationUser /> : <Navigation />
   );

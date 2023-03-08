@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Icon } from "@rneui/base";
 import ProfileStack from "../stack/ProfileStack";
 import HomeStack from "../stack/HomeStack";
-import ConfigurationStack from "../stack/ConfigurationStack";
+import SettingsStack from "../stack/SettingsStack";
 
 const Tab = createBottomTabNavigator();
 
@@ -20,6 +20,7 @@ export default function NavigationUser() {
           headerShown: false,
         })}
       >
+
         <Tab.Screen
           name="home"
           options={{ title: "Inicio" }}
@@ -35,8 +36,9 @@ export default function NavigationUser() {
         <Tab.Screen
           name="settings"
           options={{ title: "Configuración" }}
-          component={ConfigurationStack}
+          component={SettingsStack}
         />
+
       </Tab.Navigator>
     </NavigationContainer>
   );
@@ -44,7 +46,6 @@ export default function NavigationUser() {
 
 const screenOptions = (route, color) => {
   let iconName;
-
   switch (route.name) {
     case "profile":
       iconName = "account";
